@@ -21,9 +21,19 @@ const BooksList = ({ books }) => {
       {books.map((book) => (
         <div key={book.id} className="book-item">
           {/* Task 5.1: Display the book's thumbnail */}
-          <p
+          {book.imageLinks?.thumbnail && (
+            <img src={book.imageLinks.thumbnail} alt={book.title} className="book-thumbnail"/>
+          )}
+          <h3 style = {{color:'black'}}
+           className='book-title'
+           dangerouslySetInnerHTML={{
+            __html: truncateText(book.title, 3),
+           }}
+          />
+          <p style = {{color:'black'}}
+            className='book-authors'
             dangerouslySetInnerHTML={{
-              __html: truncateText(book.title, 3),
+              __html: truncateText(book.authors.join(', '), 3),
             }}
           />
           {/* Task 5.2: Use truncateText to display the book's authors */}
